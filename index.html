@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agronomy Culture — SMK Negeri 1 Bulakamba</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+*{ margin:0; padding:0; box-sizing:border-box; }
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:url('https://images.unsplash.com/photo-1501785888041-af3ef285b470') no-repeat center center fixed;
+  background-size:cover;
+  color:white;
+  overflow-x:hidden;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  width:100%; height:100%;
+  background:linear-gradient(to bottom, rgba(0,55,0,0.88), rgba(0,0,0,0.82));
+  z-index:-1;
+}
+
+/* ===== NAVBAR ===== */
+nav{
+  position:fixed; top:0; width:100%;
+  display:flex; justify-content:center; align-items:center;
+  gap:0;
+  padding:0;
+  background:linear-gradient(to right, rgba(0,60,0,0.95), rgba(0,110,0,0.85));
+  backdrop-filter:blur(14px);
+  z-index:1000;
+  box-shadow:0 4px 24px rgba(0,0,0,0.5);
+  flex-wrap:wrap;
+}
+
+nav a{
+  color:rgba(255,255,255,0.85);
+  text-decoration:none;
+  font-weight:500;
+  font-size:13.5px;
+  cursor:pointer;
+  padding:18px 20px;
+  transition:0.25s;
+  border-bottom:3px solid transparent;
+  letter-spacing:0.3px;
+}
+nav a:hover{ color:#a4ffb0; }
+nav a.active{ color:#a4ffb0; border-bottom-color:#4caf50; font-weight:600; }
+
+/* ===== SECTIONS ===== */
+.section{
+  display:none;
+  padding:110px 20px 60px;
+  min-height:100vh;
+}
+.section.active{ display:block; animation:fadeUp 0.4s ease; }
+@keyframes fadeUp{ from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:none} }
+
+/* ===== CONTAINER ===== */
+.container{
+  max-width:1050px; margin:0 auto;
+  background:rgba(255,255,255,0.07);
+  padding:50px;
+  border-radius:28px;
+  backdrop-filter:blur(18px);
+  box-shadow:0 20px 60px rgba(0,0,0,0.55);
+  border:1px solid rgba(144,238,144,0.12);
+}
+
+/* ===== HERO ===== */
+.hero-header{ text-align:center; margin-bottom:40px; }
+
+.logo-group{
+  display:flex; justify-content:center; gap:30px;
+  margin-bottom:24px; flex-wrap:wrap;
+}
+
+.logo-circle{
+  width:115px; height:115px;
+  object-fit:cover;
+  border-radius:50%;
+  border:4px solid #90ee90;
+  box-shadow:0 0 28px rgba(144,238,144,0.65);
+  transition:0.35s;
+  background:rgba(0,80,0,0.4);
+}
+.logo-circle:hover{ transform:scale(1.09); box-shadow:0 0 45px rgba(144,238,144,1); }
+
+.hero-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2rem,5vw,3.2rem);
+  font-weight:800;
+  line-height:1.1;
+  margin-bottom:6px;
+}
+.hero-title span{ color:#a4ffb0; }
+.hero-sub{ font-size:16px; opacity:0.8; margin-bottom:8px; }
+.hero-badge{
+  display:inline-block;
+  background:rgba(76,175,80,0.3);
+  border:1px solid rgba(144,238,144,0.4);
+  color:#a4ffb0;
+  padding:5px 18px; border-radius:999px;
+  font-size:12px; letter-spacing:1.5px; text-transform:uppercase;
+  margin-bottom:24px;
+}
+
+/* ===== TYPOGRAPHY ===== */
+h1{ font-size:clamp(1.6rem,4vw,2.4rem); margin-bottom:12px; font-family:'Playfair Display',serif; }
+h2{ margin:28px 0 14px; color:#a4ffb0; font-size:1.25rem; }
+p{ line-height:1.85; font-weight:300; opacity:0.9; }
+
+/* ===== GALLERY ===== */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:16px; margin-top:20px;
+}
+.gallery img{
+  width:100%; border-radius:16px;
+  transition:0.4s;
+  box-shadow:0 8px 20px rgba(0,0,0,0.4);
+  background:rgba(0,80,0,0.3);
+  min-height:180px; object-fit:cover;
+}
+.gallery img:hover{ transform:scale(1.04); box-shadow:0 14px 35px rgba(0,0,0,0.6); }
+
+/* ===== BUTTONS ===== */
+.button{
+  margin:8px 6px;
+  padding:10px 22px;
+  border:none; border-radius:999px;
+  background:linear-gradient(135deg,#2e8b57,#3cb371);
+  color:white;
+  cursor:pointer;
+  font-family:'Poppins',sans-serif;
+  font-size:13px; font-weight:600;
+  transition:0.3s;
+  box-shadow:0 4px 14px rgba(0,0,0,0.3);
+}
+.button:hover{ background:linear-gradient(135deg,#3cb371,#57d68d); transform:translateY(-2px); }
+
+/* ===== DIVIDER ===== */
+.divider{
+  border:none;
+  border-top:1px solid rgba(144,238,144,0.2);
+  margin:40px 0;
+}
+
+/* ===========================
+   TANI SECTION STYLES
+   =========================== */
+
+/* Season mini cards inside container */
+.seasons-row{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:14px; margin-top:8px;
+}
+.season-mini{
+  border-radius:16px; padding:20px 16px;
+  cursor:pointer; transition:0.3s;
+  text-align:left;
+}
+.season-mini:hover{ transform:translateY(-4px); box-shadow:0 14px 36px rgba(0,0,0,0.4); }
+.season-mini.hujan{ background:linear-gradient(135deg,#1565c0,#42a5f5); }
+.season-mini.kemarau{ background:linear-gradient(135deg,#e65100,#ffb74d); }
+.season-mini.pancaroba{ background:linear-gradient(135deg,#2e7d32,#aed581); }
+.season-mini.tinggi{ background:linear-gradient(135deg,#4a148c,#ce93d8); }
+.season-mini .s-icon{ font-size:2rem; margin-bottom:8px; }
+.season-mini h4{ font-size:15px; font-weight:700; margin-bottom:4px; }
+.season-mini p{ font-size:12px; opacity:0.88; line-height:1.5; font-weight:300; }
+.month-tags{ display:flex; gap:5px; flex-wrap:wrap; margin-top:10px; }
+.month-tag{
+  background:rgba(255,255,255,0.22); border-radius:999px;
+  padding:3px 10px; font-size:11px; font-weight:600;
+}
+
+/* Calendar table */
+.cal-wrap{
+  background:rgba(255,255,255,0.06); border-radius:16px;
+  padding:24px; margin-top:28px; overflow-x:auto;
+}
+.cal-wrap h3{ font-size:1rem; margin-bottom:16px; color:#a4ffb0; }
+table{ width:100%; border-collapse:collapse; min-width:580px; font-size:12.5px; }
+th,td{ padding:9px 8px; text-align:center; border-bottom:1px solid rgba(255,255,255,0.07); }
+th{ color:rgba(255,255,255,0.55); font-weight:600; }
+td:first-child{ text-align:left; font-weight:500; padding-left:12px; }
+tr:hover td{ background:rgba(255,255,255,0.04); }
+
+/* Plants grid */
+.filter-bar-g{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:22px; }
+.filter-btn-g{
+  padding:7px 17px; border-radius:999px;
+  border:1.5px solid rgba(144,238,144,0.35);
+  background:rgba(255,255,255,0.06);
+  color:rgba(255,255,255,0.75); font-size:12.5px; font-weight:500;
+  cursor:pointer; transition:0.2s;
+  font-family:'Poppins',sans-serif;
+}
+.filter-btn-g:hover,.filter-btn-g.active{
+  border-color:#90ee90; background:rgba(144,238,144,0.15); color:#fff;
+}
+
+.search-g{
+  display:flex; align-items:center; gap:8px;
+  background:rgba(255,255,255,0.08);
+  border:1.5px solid rgba(144,238,144,0.25);
+  border-radius:999px; padding:9px 18px;
+  max-width:380px; margin-bottom:20px;
+  transition:border-color 0.2s;
+}
+.search-g:focus-within{ border-color:#90ee90; }
+.search-g input{
+  border:none; outline:none; background:transparent;
+  font-family:'Poppins',sans-serif; font-size:13px; color:#fff; flex:1;
+}
+.search-g input::placeholder{ color:rgba(255,255,255,0.4); }
+
+.plants-g{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  gap:14px;
+}
+.plant-card-g{
+  background:rgba(255,255,255,0.07);
+  border-radius:14px; overflow:hidden;
+  border:1px solid rgba(144,238,144,0.12);
+  cursor:pointer; transition:0.25s;
+}
+.plant-card-g:hover{ background:rgba(255,255,255,0.12); transform:translateY(-4px); box-shadow:0 12px 30px rgba(0,0,0,0.4); }
+.plant-thumb-g{
+  height:110px; display:flex; align-items:center; justify-content:center;
+  font-size:3.2rem; position:relative;
+}
+.p-badge{
+  position:absolute; top:8px; right:8px;
+  padding:3px 9px; border-radius:999px; font-size:10px; font-weight:700;
+}
+.pb-hujan{ background:rgba(21,101,192,0.8); color:#bbdefb; }
+.pb-kemarau{ background:rgba(230,81,0,0.8); color:#ffe0b2; }
+.pb-all{ background:rgba(46,125,50,0.8); color:#dcedc8; }
+.pb-tinggi{ background:rgba(74,20,140,0.8); color:#e1bee7; }
+.plant-info-g{ padding:14px; }
+.plant-info-g h4{ font-size:14px; font-weight:600; margin-bottom:3px; }
+.plant-info-g p{ font-size:12px; opacity:0.65; }
+.ptags{ display:flex; gap:5px; flex-wrap:wrap; margin-top:8px; }
+.ptag{ background:rgba(255,255,255,0.1); padding:2px 9px; border-radius:999px; font-size:10.5px; color:rgba(255,255,255,0.7); }
+
+/* Guide cards */
+.guide-g{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(290px,1fr));
+  gap:16px;
+}
+.guide-card-g{
+  background:rgba(255,255,255,0.07);
+  border-radius:16px; padding:24px;
+  border:1px solid rgba(144,238,144,0.12);
+  transition:0.25s;
+}
+.guide-card-g:hover{ background:rgba(255,255,255,0.11); transform:translateY(-3px); }
+.guide-card-g .g-icon{ font-size:2.2rem; margin-bottom:12px; }
+.guide-card-g h3{ font-size:15px; font-weight:700; margin-bottom:6px; color:#a4ffb0; }
+.guide-card-g .g-desc{ font-size:13px; opacity:0.7; margin-bottom:14px; }
+.step-list{ list-style:none; }
+.step-list li{
+  display:flex; gap:8px; align-items:flex-start;
+  padding:7px 0; border-bottom:1px solid rgba(255,255,255,0.07);
+  font-size:12.5px; color:rgba(255,255,255,0.75); line-height:1.5;
+}
+.snum{
+  min-width:22px; height:22px;
+  background:rgba(144,238,144,0.2); color:#90ee90;
+  border-radius:50%; display:flex; align-items:center; justify-content:center;
+  font-size:11px; font-weight:700; flex-shrink:0;
+}
+
+/* Fertilizer */
+.fert-row{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+  gap:12px; margin-bottom:8px;
+}
+.fert-card-g{
+  background:rgba(255,255,255,0.07);
+  border-radius:13px; padding:16px; text-align:center;
+  border:1px solid rgba(144,238,144,0.1);
+}
+.fert-card-g .fi{ font-size:2rem; margin-bottom:8px; }
+.fert-card-g h4{ font-size:13px; font-weight:700; margin-bottom:4px; }
+.fert-card-g p{ font-size:11.5px; opacity:0.65; line-height:1.5; }
+.ftype{ font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:6px; }
+.ft-organik{ color:#69f0ae; }
+.ft-kimia{ color:#64b5f6; }
+.ft-hayati{ color:#ce93d8; }
+
+.fert-section-g h3{ font-size:1rem; font-weight:700; color:#a4ffb0; margin:28px 0 14px; display:flex; align-items:center; gap:8px; }
+
+/* Technique boxes */
+.tech-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:12px; margin-top:20px;
+}
+.tech-box{
+  padding:16px; border-radius:13px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(144,238,144,0.12);
+}
+.tech-box .tb-icon{ font-size:1.6rem; margin-bottom:8px; }
+.tech-box strong{ display:block; font-size:13.5px; margin-bottom:5px; }
+.tech-box p{ font-size:12px; opacity:0.65; }
+
+/* Tips */
+.tips-g{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:14px;
+}
+.tip-g{
+  padding:20px; border-radius:14px;
+  border-left:4px solid;
+  background:rgba(255,255,255,0.05);
+}
+.tip-g.green{ border-color:#69f0ae; }
+.tip-g.yellow{ border-color:#ffeb3b; }
+.tip-g.blue{ border-color:#64b5f6; }
+.tip-g.orange{ border-color:#ffb74d; }
+.tip-g h4{ font-weight:700; font-size:14px; margin-bottom:7px; }
+.tip-g p{ font-size:13px; opacity:0.72; line-height:1.65; }
+
+.jadwal-g{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:12px; margin-top:20px;
+}
+.jcard{
+  background:rgba(255,255,255,0.07); border-radius:12px; padding:14px;
+}
+.jcard .ji{ font-size:1.5rem; margin-bottom:6px; }
+.jcard strong{ display:block; color:#a4ffb0; font-size:13px; margin-bottom:3px; }
+.jcard p{ font-size:12px; opacity:0.65; }
+
+/* SUB-NAV for tani sections */
+.tani-subnav{
+  display:flex; gap:8px; flex-wrap:wrap;
+  margin-bottom:28px;
+}
+.tani-tab{
+  padding:8px 18px; border-radius:999px;
+  border:1.5px solid rgba(144,238,144,0.3);
+  background:rgba(255,255,255,0.06);
+  color:rgba(255,255,255,0.75); font-size:13px; font-weight:500;
+  cursor:pointer; transition:0.2s;
+  font-family:'Poppins',sans-serif;
+}
+.tani-tab:hover,.tani-tab.active{
+  border-color:#90ee90; background:rgba(144,238,144,0.18); color:#fff; font-weight:600;
+}
+.tani-panel{ display:none; }
+.tani-panel.active{ display:block; animation:fadeUp 0.35s ease; }
+
+/* ===== MODAL ===== */
+.modal-overlay{
+  display:none; position:fixed; inset:0;
+  background:rgba(0,0,0,0.7); z-index:2000;
+  justify-content:center; align-items:center; padding:20px;
+}
+.modal-overlay.open{ display:flex; }
+.modal-box{
+  background:linear-gradient(160deg,#0d2b0d,#1a4a1a);
+  border-radius:22px; max-width:580px; width:100%;
+  max-height:85vh; overflow-y:auto;
+  padding:36px; position:relative;
+  border:1px solid rgba(144,238,144,0.25);
+  box-shadow:0 24px 60px rgba(0,0,0,0.7);
+  animation:modalIn 0.35s cubic-bezier(0.34,1.56,0.64,1);
+}
+@keyframes modalIn{ from{opacity:0;transform:scale(0.85)} to{opacity:1;transform:scale(1)} }
+.modal-close{
+  position:absolute; top:14px; right:14px;
+  background:rgba(255,255,255,0.1); border:none; border-radius:50%;
+  width:34px; height:34px; font-size:18px; color:#fff;
+  cursor:pointer; display:flex; align-items:center; justify-content:center; transition:0.2s;
+}
+.modal-close:hover{ background:rgba(255,255,255,0.2); }
+.modal-box .mi{ font-size:3.5rem; margin-bottom:14px; }
+.modal-box h2{ font-family:'Playfair Display',serif; font-size:1.7rem; margin-bottom:4px; }
+.modal-box .msub{ font-size:13px; opacity:0.6; margin-bottom:22px; }
+.msec h4{
+  font-size:11px; text-transform:uppercase; letter-spacing:1.5px;
+  color:#69f0ae; margin-bottom:8px; margin-top:20px; font-weight:700;
+}
+.msec p{ font-size:13.5px; opacity:0.8; line-height:1.7; }
+.mlist{ list-style:none; }
+.mlist li{
+  padding:7px 0; border-bottom:1px solid rgba(255,255,255,0.07);
+  font-size:13.5px; opacity:0.8; display:flex; gap:8px;
+}
+.mlist li::before{ content:'→'; color:#69f0ae; flex-shrink:0; }
+
+/* FOOTER */
+footer{
+  text-align:center; padding:24px;
+  background:rgba(0,40,0,0.95);
+  font-size:13px; opacity:0.75;
+  border-top:1px solid rgba(144,238,144,0.15);
+}
+
+@media(max-width:768px){
+  h1{ font-size:1.5rem; }
+  .logo-circle{ width:85px; height:85px; }
+  nav a{ padding:14px 10px; font-size:12px; }
+  .container{ padding:28px 18px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav>
+  <a onclick="showSection('beranda',this)" class="active">🏠 Beranda</a>
+  <a onclick="showSection('kegiatan',this)">📋 Kegiatan</a>
+  <a onclick="showSection('angkatan',this)">🎓 Angkatan</a>
+  <a onclick="showSection('alumni',this)">👥 Alumni</a>
+  <a onclick="showSection('galeri',this)">📷 Galeri</a>
+  <a onclick="showSection('panduan',this)">🌾 Panduan Pertanian</a>
+</nav>
+
+<!-- ===========================
+     BERANDA
+=========================== -->
+<div id="beranda" class="section active">
+<div class="container">
+
+  <div class="hero-header">
+    <div class="logo-group">
+      <img src="ppnebula.jpg" class="logo-circle" onerror="this.style.display='none'">
+      <img src="logo-jurusan.png" class="logo-circle" onerror="this.style.display='none'">
+    </div>
+    <div class="hero-badge">SMK Negeri 1 Bulakamba</div>
+    <div class="hero-title">Agronomy <span>Culture</span></div>
+    <p class="hero-sub">Inovasi • Teknologi • Budaya Pertanian Modern</p>
+  </div>
+
+  <h2>Apa itu Agronomy Culture?</h2>
+  <p>Agronomy Culture adalah wadah pengembangan ilmu pertanian modern yang mengintegrasikan praktik lapangan, inovasi teknologi, serta budaya kerja profesional di bidang agronomi di lingkungan SMK Negeri 1 Bulakamba.</p>
+
+  <hr class="divider">
+  <h2>Dokumentasi Kegiatan</h2>
+  <div class="gallery">
+    <img src="kegiatanjurusan1.jpg" alt="Kegiatan 1">
+    <img src="kegiatanjurusan2.jpg" alt="Kegiatan 2">
+    <img src="kegiatanjurusan3.jpg" alt="Kegiatan 3">
+    <img src="kegiatanjurusan4.jpg" alt="Kegiatan 4">
+  </div>
+
+  <hr class="divider">
+  <!-- Mini Season Preview on Homepage -->
+  <h2>🌦️ Musim Tanam di Indonesia</h2>
+  <p style="margin-bottom:20px">Pahami musim untuk menentukan waktu tanam yang tepat.</p>
+  <div class="seasons-row">
+    <div class="season-mini hujan" onclick="goToPanduan('musim')">
+      <div class="s-icon">🌧️</div>
+      <h4>Musim Hujan</h4>
+      <p>Nov – Apr. Cocok untuk padi, sayuran, umbi-umbian.</p>
+      <div class="month-tags"><span class="month-tag">Nov–Apr</span></div>
+    </div>
+    <div class="season-mini kemarau" onclick="goToPanduan('musim')">
+      <div class="s-icon">☀️</div>
+      <h4>Musim Kemarau</h4>
+      <p>Mei – Okt. Ideal untuk jagung, cabai, semangka.</p>
+      <div class="month-tags"><span class="month-tag">Mei–Okt</span></div>
+    </div>
+    <div class="season-mini pancaroba" onclick="goToPanduan('musim')">
+      <div class="s-icon">🌤️</div>
+      <h4>Pancaroba</h4>
+      <p>Peralihan musim. Waspada hama dan penyakit.</p>
+      <div class="month-tags"><span class="month-tag">Apr–Mei</span><span class="month-tag">Okt–Nov</span></div>
+    </div>
+    <div class="season-mini tinggi" onclick="goToPanduan('musim')">
+      <div class="s-icon">⛰️</div>
+      <h4>Dataran Tinggi</h4>
+      <p>Iklim sejuk 15–25°C. Kopi, teh, kentang.</p>
+      <div class="month-tags"><span class="month-tag">Sepanjang Tahun</span></div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ===========================
+     KEGIATAN
+=========================== -->
+<div id="kegiatan" class="section">
+<div class="container">
+  <h1>Kegiatan Agronomy Culture</h1>
+  <p>Ringkasan kegiatan meliputi praktik budidaya tanaman, pengolahan tanah, pembibitan, dan kegiatan agribisnis siswa.</p>
+  <div class="gallery">
+    <img src="kegiatanjurusan1.jpg" alt="Kegiatan 1">
+    <img src="kegiatanjurusan2.jpg" alt="Kegiatan 2">
+    <img src="kegiatanjurusan3.jpg" alt="Kegiatan 3">
+    <img src="kegiatanjurusan4.jpg" alt="Kegiatan 4">
+  </div>
+</div>
+</div>
+
+<!-- ===========================
+     ANGKATAN
+=========================== -->
+<div id="angkatan" class="section">
+<div class="container">
+  <h1>Angkatan</h1>
+  <button class="button" onclick="showAngkatan('2025')">2025–2026</button>
+  <button class="button" onclick="showAngkatan('2026')">2026–2027</button>
+  <div id="angkatanDetail" style="margin-top:24px"></div>
+</div>
+</div>
+
+<!-- ===========================
+     ALUMNI
+=========================== -->
+<div id="alumni" class="section">
+<div class="container">
+  <h1>Alumni</h1>
+  <button class="button" onclick="showAlumni('2025')">Lulusan 2025</button>
+  <div id="alumniDetail" style="margin-top:24px"></div>
+</div>
+</div>
+
+<!-- ===========================
+     GALERI
+=========================== -->
+<div id="galeri" class="section">
+<div class="container">
+  <h1>Galeri Seluruh Kegiatan</h1>
+  <div class="gallery">
+    <img src="galeri1.jpg" alt="Galeri 1">
+    <img src="galeri2.jpg" alt="Galeri 2">
+    <img src="galeri3.jpg" alt="Galeri 3">
+    <img src="galeri4.jpg" alt="Galeri 4">
+  </div>
+</div>
+</div>
+
+<!-- ===========================
+     PANDUAN PERTANIAN (TaniNusantara)
+=========================== -->
+<div id="panduan" class="section">
+<div class="container">
+
+  <h1>🌾 Panduan Pertanian</h1>
+  <p style="margin-bottom:28px">Materi lengkap bertani — musim tanam, jenis tanaman, budidaya, pemupukan, hingga tips petani modern.</p>
+
+  <!-- Sub nav -->
+  <div class="tani-subnav">
+    <button class="tani-tab active" onclick="showTani('musim',this)">🌦️ Musim</button>
+    <button class="tani-tab" onclick="showTani('tanaman',this)">🌿 Tanaman</button>
+    <button class="tani-tab" onclick="showTani('budidaya',this)">👨‍🌾 Budidaya</button>
+    <button class="tani-tab" onclick="showTani('pupuk',this)">🧪 Pemupukan</button>
+    <button class="tani-tab" onclick="showTani('tips',this)">💡 Tips & Materi</button>
+  </div>
+
+  <!-- MUSIM -->
+  <div class="tani-panel active" id="tani-musim">
+    <div class="seasons-row">
+      <div class="season-mini hujan" onclick="openMusimModal('hujan')">
+        <div class="s-icon">🌧️</div><h4>Musim Hujan</h4>
+        <p>Curah hujan tinggi, padi dan sayuran daun tumbuh optimal.</p>
+        <div class="month-tags"><span class="month-tag">Nov</span><span class="month-tag">Des</span><span class="month-tag">Jan</span><span class="month-tag">Feb</span><span class="month-tag">Mar</span><span class="month-tag">Apr</span></div>
+      </div>
+      <div class="season-mini kemarau" onclick="openMusimModal('kemarau')">
+        <div class="s-icon">☀️
