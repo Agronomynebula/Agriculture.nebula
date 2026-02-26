@@ -37,19 +37,21 @@ nav{
   flex-wrap:wrap;
 }
 
-nav a{
+nav button{
   color:rgba(255,255,255,0.85);
-  text-decoration:none;
+  background:none;
+  border:none;
+  border-bottom:3px solid transparent;
+  font-family:'Poppins',sans-serif;
   font-weight:500;
   font-size:13.5px;
   cursor:pointer;
   padding:18px 20px;
   transition:0.25s;
-  border-bottom:3px solid transparent;
   letter-spacing:0.3px;
 }
-nav a:hover{ color:#a4ffb0; }
-nav a.active{ color:#a4ffb0; border-bottom-color:#4caf50; font-weight:600; }
+nav button:hover{ color:#a4ffb0; }
+nav button.active{ color:#a4ffb0; border-bottom-color:#4caf50; font-weight:600; }
 
 /* ===== SECTIONS ===== */
 .section{
@@ -415,7 +417,7 @@ footer{
 @media(max-width:768px){
   h1{ font-size:1.5rem; }
   .logo-circle{ width:85px; height:85px; }
-  nav a{ padding:14px 10px; font-size:12px; }
+  nav button{ padding:14px 10px; font-size:12px; }
   .container{ padding:28px 18px; }
 }
 </style>
@@ -424,12 +426,12 @@ footer{
 
 <!-- ===== NAVBAR ===== -->
 <nav>
-  <a onclick="showSection('beranda',this)" class="active">🏠 Beranda</a>
-  <a onclick="showSection('kegiatan',this)">📋 Kegiatan</a>
-  <a onclick="showSection('angkatan',this)">🎓 Angkatan</a>
-  <a onclick="showSection('alumni',this)">👥 Alumni</a>
-  <a onclick="showSection('galeri',this)">📷 Galeri</a>
-  <a onclick="showSection('panduan',this)">🌾 Panduan Pertanian</a>
+  <button class="active" onclick="showSection('beranda',this)">🏠 Beranda</button>
+  <button onclick="showSection('kegiatan',this)">📋 Kegiatan</button>
+  <button onclick="showSection('angkatan',this)">🎓 Angkatan</button>
+  <button onclick="showSection('alumni',this)">👥 Alumni</button>
+  <button onclick="showSection('galeri',this)">📷 Galeri</button>
+  <button onclick="showSection('panduan',this)">🌾 Panduan Pertanian</button>
 </nav>
 
 <!-- ===========================
@@ -557,7 +559,7 @@ footer{
   <h1>🌾 Panduan Pertanian</h1>
   <p style="margin-bottom:28px">Materi lengkap bertani — musim tanam, jenis tanaman, budidaya, pemupukan, hingga tips petani modern.</p>
 
-  <!-- Sub nav -->
+  <!-- Sub Nav -->
   <div class="tani-subnav">
     <button class="tani-tab active" onclick="showTani('musim',this)">🌦️ Musim</button>
     <button class="tani-tab" onclick="showTani('tanaman',this)">🌿 Tanaman</button>
@@ -572,7 +574,4 @@ footer{
       <div class="season-mini hujan" onclick="openMusimModal('hujan')">
         <div class="s-icon">🌧️</div><h4>Musim Hujan</h4>
         <p>Curah hujan tinggi, padi dan sayuran daun tumbuh optimal.</p>
-        <div class="month-tags"><span class="month-tag">Nov</span><span class="month-tag">Des</span><span class="month-tag">Jan</span><span class="month-tag">Feb</span><span class="month-tag">Mar</span><span class="month-tag">Apr</span></div>
-      </div>
-      <div class="season-mini kemarau" onclick="openMusimModal('kemarau')">
-        <div class="s-icon">☀️
+        <div class="month-tags"><span class="month-tag">Nov</span><span class="month-tag">Des</span><span class="month-tag">Jan</span><span class="month-tag">Feb</span><span class="month-tag">Mar</span><span class="month-tag">Apr</span>
