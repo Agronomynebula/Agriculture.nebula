@@ -426,12 +426,12 @@ footer{
 
 <!-- ===== NAVBAR ===== -->
 <nav>
-  <button class="active" onclick="showSection('beranda',this)">🏠 Beranda</button>
-  <button onclick="showSection('kegiatan',this)">📋 Kegiatan</button>
-  <button onclick="showSection('angkatan',this)">🎓 Angkatan</button>
-  <button onclick="showSection('alumni',this)">👥 Alumni</button>
-  <button onclick="showSection('galeri',this)">📷 Galeri</button>
-  <button onclick="showSection('panduan',this)">🌾 Panduan Pertanian</button>
+  <button id="navBtn0" style="border-bottom:3px solid #4caf50;color:#a4ffb0;font-weight:600;" onclick="showSection('beranda',this)">🏠 Beranda</button>
+  <button id="navBtn1" onclick="showSection('kegiatan',this)">📋 Kegiatan</button>
+  <button id="navBtn2" onclick="showSection('angkatan',this)">🎓 Angkatan</button>
+  <button id="navBtn3" onclick="showSection('alumni',this)">👥 Alumni</button>
+  <button id="navBtn4" onclick="showSection('galeri',this)">📷 Galeri</button>
+  <button id="navBtn5" onclick="showSection('panduan',this)">🌾 Panduan Pertanian</button>
 </nav>
 
 <!-- ===========================
@@ -561,11 +561,11 @@ footer{
 
   <!-- Sub Nav -->
   <div class="tani-subnav">
-    <button class="tani-tab active" onclick="showTani('musim',this)">🌦️ Musim</button>
-    <button class="tani-tab" onclick="showTani('tanaman',this)">🌿 Tanaman</button>
-    <button class="tani-tab" onclick="showTani('budidaya',this)">👨‍🌾 Budidaya</button>
-    <button class="tani-tab" onclick="showTani('pupuk',this)">🧪 Pemupukan</button>
-    <button class="tani-tab" onclick="showTani('tips',this)">💡 Tips & Materi</button>
+    <button id="taniTab0" class="tani-tab" onclick="showTani('musim',this)">🌦️ Musim</button>
+    <button id="taniTab1" class="tani-tab" onclick="showTani('tanaman',this)">🌿 Tanaman</button>
+    <button id="taniTab2" class="tani-tab" onclick="showTani('budidaya',this)">👨‍🌾 Budidaya</button>
+    <button id="taniTab3" class="tani-tab" onclick="showTani('pupuk',this)">🧪 Pemupukan</button>
+    <button id="taniTab4" class="tani-tab" onclick="showTani('tips',this)">💡 Tips & Materi</button>
   </div>
 
   <!-- MUSIM -->
@@ -796,28 +796,44 @@ function renderTips(){
 }
 
 // =========== SECTION NAV ===========
-function showSection(id,el){
-  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-  document.querySelectorAll('nav button').forEach(a=>a.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  if(el) el.classList.add('active');
-  window.scrollTo({top:0,behavior:'smooth'});
+var allSections = ['beranda','kegiatan','angkatan','alumni','galeri','panduan'];
+var allNavBtns = ['navBtn0','navBtn1','navBtn2','navBtn3','navBtn4','navBtn5'];
+var allTaniPanels = ['tani-musim','tani-tanaman','tani-budidaya','tani-pupuk','tani-tips'];
+var allTaniTabs = ['taniTab0','taniTab1','taniTab2','taniTab3','taniTab4'];
+
+function showSection(id, el){
+  for(var i=0; i<allSections.length; i++){
+    var s = document.getElementById(allSections[i]);
+    if(s) s.style.display = 'none';
+  }
+  for(var i=0; i<allNavBtns.length; i++){
+    var b = document.getElementById(allNavBtns[i]);
+    if(b) b.style.borderBottom = '3px solid transparent';
+    if(b) b.style.color = 'rgba(255,255,255,0.85)';
+  }
+  var target = document.getElementById(id);
+  if(target) target.style.display = 'block';
+  if(el){ el.style.borderBottom = '3px solid #4caf50'; el.style.color = '#a4ffb0'; }
+  window.scrollTo(0,0);
 }
 
 function goToPanduan(tab){
-  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-  document.querySelectorAll('nav button').forEach(a=>a.classList.remove('active'));
-  document.getElementById('panduan').classList.add('active');
-  showTani(tab);
-  window.scrollTo({top:0,behavior:'smooth'});
+  showSection('panduan', document.getElementById('navBtn5'));
+  showTani(tab, null);
 }
 
-function showTani(id,btn){
-  document.querySelectorAll('.tani-panel').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.tani-tab').forEach(b=>b.classList.remove('active'));
-  const panel = document.getElementById('tani-'+id);
-  if(panel) panel.classList.add('active');
-  if(btn) btn.classList.add('active');
+function showTani(id, btn){
+  for(var i=0; i<allTaniPanels.length; i++){
+    var p = document.getElementById(allTaniPanels[i]);
+    if(p) p.style.display = 'none';
+  }
+  for(var i=0; i<allTaniTabs.length; i++){
+    var b = document.getElementById(allTaniTabs[i]);
+    if(b){ b.style.background='rgba(255,255,255,0.06)'; b.style.color='rgba(255,255,255,0.75)'; }
+  }
+  var panel = document.getElementById('tani-'+id);
+  if(panel) panel.style.display = 'block';
+  if(btn){ btn.style.background='rgba(144,238,144,0.18)'; btn.style.color='#fff'; }
 }
 
 function filterByTag(tag,btn){
@@ -882,6 +898,20 @@ function showAlumni(t){
 }
 
 // =========== INIT ===========
+// Set semua section tersembunyi dulu, lalu tampilkan beranda
+for(var i=0; i<allSections.length; i++){
+  var s = document.getElementById(allSections[i]);
+  if(s) s.style.display = 'none';
+}
+document.getElementById('beranda').style.display = 'block';
+
+// Set semua tani panel tersembunyi, tampilkan musim
+for(var i=0; i<allTaniPanels.length; i++){
+  var p = document.getElementById(allTaniPanels[i]);
+  if(p) p.style.display = 'none';
+}
+document.getElementById('tani-musim').style.display = 'block';
+
 renderPlants(plantsData);
 renderGuides();
 renderPupuk();
